@@ -12,7 +12,7 @@ public class Order {
     private OrderStatus status;
     private Client client;
 
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     private List<OrderItem> items = new ArrayList<>();
 
@@ -74,12 +74,18 @@ public String toString() {
     sb.append("Order moment: " + dtf.format(moment) + "\n");
     sb.append("Order status: " + status + "\n");
     sb.append("\n");
-    sb.append("Client: " + client + "\n");
+    sb.append("Client: " + client.getName() + " (" + dtf.format(client.getBirthDate()) + ") - " + client.getEmail() + "\n");
     sb.append("\n");
     sb.append("Order items:\n");
 
     for (OrderItem item : items) {
-        sb.append(item  + "\n");
+        sb.append(item.getProduct().getName() + 
+        ", $" + 
+        String.format("%.2f", item.getPrice()) + 
+        ", Quantity: " + 
+        item.getQuantity() + 
+        ", Subtotal: $" + 
+        item.getPrice() + "\n");
     }
     sb.append("\n");
     sb.append("Total price: $" + String.format("%.2f", total()));
