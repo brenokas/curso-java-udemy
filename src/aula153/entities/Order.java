@@ -12,7 +12,8 @@ public class Order {
     private OrderStatus status;
     private Client client;
 
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    DateTimeFormatter dtfMoment = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+    DateTimeFormatter dtfBirthday = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     private List<OrderItem> items = new ArrayList<>();
 
@@ -71,10 +72,10 @@ public class Order {
 @Override
 public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("Order moment: " + dtf.format(moment) + "\n");
+    sb.append("Order moment: " + dtfMoment.format(moment) + "\n");
     sb.append("Order status: " + status + "\n");
     sb.append("\n");
-    sb.append("Client: " + client.getName() + " (" + dtf.format(client.getBirthDate()) + ") - " + client.getEmail() + "\n");
+    sb.append("Client: " + client.getName() + " (" + dtfBirthday.format(client.getBirthDate()) + ") - " + client.getEmail() + "\n");
     sb.append("\n");
     sb.append("Order items:\n");
 
