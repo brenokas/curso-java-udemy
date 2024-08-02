@@ -1,4 +1,4 @@
-package aula172;
+package aula172.app;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
